@@ -1,0 +1,20 @@
+model Employee {
+  id         String  @id @default(uuid())
+  companyId  String
+  positionId String?
+
+  firstName    String  @db.VarChar(20)
+  lastName     String  @db.VarChar(20)
+  email        String  @unique @db.VarChar(20)
+  internalRate Decimal @default("0")
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  company  Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  position Position? @relation(fields: [positionId], references: [id])
+
+  @@index([companyId])
+  @@index([positionId])
+}

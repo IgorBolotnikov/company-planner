@@ -2,7 +2,7 @@ model User {
   id        String @id @default(uuid())
   companyId String
 
-  email           String     @unique @db.VarChar(20)
+  email           String     @unique @db.VarChar(50)
   isEmailVerified Boolean    @default(false)
   firstName       String     @db.VarChar(20)
   lastName        String     @db.VarChar(20)

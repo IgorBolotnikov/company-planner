@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, redirect } from "react-router";
 import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "~/components/ui/card";
+import { getAuthUser } from "~/lib/auth";
+import { checkIfUserExists, createUserAndCompany } from "~/routes/auth";
 import type { Route } from "./+types/home";
 
 export function meta({}: Route.MetaArgs) {
@@ -9,6 +11,18 @@ export function meta({}: Route.MetaArgs) {
     { title: "Company Planner" },
     { name: "description", content: "An easy way to plan your teams in a company!" },
   ];
+}
+
+export async function loader({ request }: Route.LoaderArgs) {
+  const user = await getAuthUser(request);
+  if (!!user && !(await checkIfUserExists(user.email))) {
+    await createUserAndCompany({
+      email: user.email,
+      firstName: user.given_name ?? "",
+      lastName: user.family_name ?? "",
+    });
+    throw redirect("/kinde-auth/company");
+  }
 }
 
 export default function Home() {

@@ -2,7 +2,7 @@ import { Outlet, redirect, useLoaderData } from "react-router";
 import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar";
 import { AppSidebar } from "~/components/app-sidebar";
 import { getAuthUser } from "~/lib/auth";
-import { type Route } from "../.react-router/types/app/+types/root";
+import { type Route } from ".react-router/types/app/+types/root";
 import { prisma } from "../prisma/client";
 
 export async function loader({ request }: Route.LoaderArgs) {

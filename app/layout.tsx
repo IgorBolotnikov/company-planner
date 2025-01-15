@@ -1,4 +1,4 @@
-import { redirect, useLoaderData } from "react-router";
+import { Outlet, redirect, useLoaderData } from "react-router";
 import { SidebarProvider, SidebarTrigger } from "~/components/ui/sidebar";
 import { AppSidebar } from "~/components/app-sidebar";
 import { getAuthUser } from "~/lib/auth";
@@ -40,7 +40,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       />
       <main>
         <SidebarTrigger />
-        {children}
+        <Outlet />
       </main>
     </SidebarProvider>
   );

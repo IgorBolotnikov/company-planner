@@ -1,7 +1,8 @@
-import { HomeIcon, CalendarIcon, PersonStandingIcon, AudioWaveform } from "lucide-react";
+import { HomeIcon, CalendarIcon, PersonStandingIcon, AudioWaveform, LogOutIcon } from "lucide-react";
+import { Link } from "react-router";
 import {
   Sidebar,
-  SidebarContent,
+  SidebarContent, SidebarFooter,
   SidebarGroup,
   SidebarHeader,
   SidebarMenu,
@@ -64,16 +65,28 @@ export function AppSidebar({
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild>
-                  <a href={item.url}>
+                  <Link to={item.url}>
                     <item.icon />
                     <span>{item.title}</span>
-                  </a>
+                  </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
           </SidebarMenu>
         </SidebarGroup>
       </SidebarContent>
+      <SidebarFooter>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild>
+              <Link to="/kinde-auth/logout">
+                <LogOutIcon />
+                Logout
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarFooter>
     </Sidebar>
   );
 }

@@ -6,7 +6,10 @@
     "build": "cross-env NODE_ENV=production react-router build",
     "dev": "react-router dev --port 3000",
     "start": "cross-env NODE_ENV=production react-router-serve ./build/server/index.js",
-    "typecheck": "react-router typegen && tsc"
+    "typecheck": "react-router typegen && tsc",
+    "compose-up": "docker compose -f docker-compose.yml up -d",
+    "admin": "npx prisma studio",
+    "migrate-dev": "npx prisma migrate dev"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

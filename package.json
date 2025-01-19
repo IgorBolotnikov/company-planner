@@ -9,7 +9,9 @@
     "typecheck": "react-router typegen && tsc",
     "compose-up": "docker compose -f docker-compose.yml up -d",
     "admin": "npx prisma studio",
-    "migrate-dev": "npx prisma migrate dev"
+    "migrate-dev": "npx prisma migrate dev",
+    "codegen": "npx prisma generate",
+    "setup": "cp .env.example .env && npm run compose-up && npm run migrate-dev && npm run codegen"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

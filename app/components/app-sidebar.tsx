@@ -1,8 +1,16 @@
-import { HomeIcon, CalendarIcon, PersonStandingIcon, AudioWaveform, LogOutIcon } from "lucide-react";
+import {
+  HomeIcon,
+  CalendarIcon,
+  PersonStandingIcon,
+  AudioWaveform,
+  LogOutIcon,
+  UsersIcon,
+} from "lucide-react";
 import { Link } from "react-router";
 import {
   Sidebar,
-  SidebarContent, SidebarFooter,
+  SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarHeader,
   SidebarMenu,
@@ -25,6 +33,11 @@ const items = [
     title: "People",
     url: "/people",
     icon: PersonStandingIcon,
+  },
+  {
+    title: "Teams",
+    url: "/teams",
+    icon: UsersIcon,
   },
 ];
 

@@ -1,6 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
+  Link,
   useFetcher,
+  useNavigate,
 } from "react-router";
 import { z } from "zod";
 import { Button } from "~/components/ui/button";
@@ -15,31 +17,30 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { RemixFormProvider, useRemixForm } from "~/lib/remix-hook-form";
 
-export const schema = z.object({
-  id: z.optional(z.string()),
+const schema = z.object({
   firstName: z.string(),
   lastName: z.string(),
   position: z.string(),
   team: z.string(),
-  internalRate: z.string(),
-  hasExternalRate: z.boolean(),
-  externalRate: z.optional(z.string()),
+  // internalRate: z.string(),
+  // hasExternalRate: z.boolean(),
+  // externalRate: z.optional(z.string()),
 });
 
-export const resolver = zodResolver(schema);
+export const personFormResolver = zodResolver(schema);
 
-type FormData = z.infer<typeof schema>;
+export type PersonFormData = z.infer<typeof schema>;
 
 interface PersonFormProps extends React.PropsWithChildren {
-  initialValues?: FormData;
+  initialValues?: PersonFormData;
 }
 
 export default function PersonForm({
   initialValues,
-  children,
 }: PersonFormProps) {
   const fetcher = useFetcher();
-  const form = useRemixForm<FormData>({
+  const navigate = useNavigate();
+  const form = useRemixForm<PersonFormData>({
     mode: "onSubmit",
     fetcher,
     defaultValues: initialValues ?? {
@@ -48,7 +49,7 @@ export default function PersonForm({
       position: "",
       team: "",
     },
-    resolver,
+    resolver: personFormResolver,
   });
 
   const headerText = initialValues
@@ -60,48 +61,43 @@ export default function PersonForm({
     : "Create";
 
   return (
-    <Dialog>
-      {children}
+    <Dialog open onOpenChange={() => navigate(-1)}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{headerText}</DialogTitle>
         </DialogHeader>
         <RemixFormProvider {...form}>
-          <div className="grid gap-4">
-            <div className="grid gap-2">
-              <Label htmlFor="firstName">
-                First Name
-              </Label>
-              <Input {...form.register("firstName")} />
+          <form onSubmit={form.handleSubmit} method="POST">
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="firstName">
+                  First Name
+                </Label>
+                <Input {...form.register("firstName")} />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="lastName">
+                  Last Name
+                </Label>
+                <Input {...form.register("lastName")} />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="position">
+                  Position
+                </Label>
+                <Input {...form.register("position")} />
+              </div>
+              <div className="flex flex-col gap-2">
+                <Label htmlFor="position">
+                  Team (optional)
+                </Label>
+                <Input {...form.register("team")} />
+              </div>
+              <DialogFooter>
+                <Button type="submit">{buttonText}</Button>
+              </DialogFooter>
             </div>
-            <div className="grid gap-2">
-              <Label htmlFor="lastName">
-                Last Name
-              </Label>
-              <Input {...form.register("lastName")} />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="position">
-                Position
-              </Label>
-              <Input {...form.register("position")} />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="position">
-                Team (optional)
-              </Label>
-              <Input {...form.register("team")} />
-            </div>
-            <div className="grid gap-2">
-              <Label htmlFor="position">
-                Team (optional)
-              </Label>
-              <Input {...form.register("team")} />
-            </div>
-          </div>
-          <DialogFooter>
-            <Button type="submit">{buttonText}</Button>
-          </DialogFooter>
+          </form>
         </RemixFormProvider>
       </DialogContent>
     </Dialog>

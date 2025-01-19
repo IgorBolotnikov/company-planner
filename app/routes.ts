@@ -4,7 +4,11 @@ export default [
   layout("layout.tsx", [
     index("routes/home.tsx"),
     route("calendar", "routes/calendar/route.tsx"),
-    route("people", "routes/people/route.tsx"),
+    route("people", "routes/people/route.tsx", [
+      route("new", "routes/people/new/route.tsx"),
+      route(":personId/edit", "routes/people/edit/route.tsx"),
+      route(":personId/delete", "routes/people/delete/route.tsx"),
+    ]),
     route("teams", "routes/teams/route.tsx"),
   ]),
   route("kinde-auth/company", "routes/auth/company/route.tsx"),

@@ -49,7 +49,7 @@ export function AppSidebar({
   userName: string;
 }) {
   return (
-    <Sidebar collapsible="icon">
+    <Sidebar>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>

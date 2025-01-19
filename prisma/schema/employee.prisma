@@ -5,7 +5,6 @@ model Employee {
 
   firstName    String  @db.VarChar(20)
   lastName     String  @db.VarChar(20)
-  email        String  @unique @db.VarChar(20)
   internalRate Decimal @default("0")
 
   createdAt DateTime  @default(now())

@@ -1,6 +1,6 @@
 import { handleAuth } from "@kinde-oss/kinde-remix-sdk";
 import { type LoaderFunctionArgs, redirect } from "react-router";
-import { prisma } from "../../../prisma/client";
+import { prisma } from "@/prisma/client";
 
 export async function loader({ params, request }: LoaderFunctionArgs) {
   if (params["*"] === "company") {

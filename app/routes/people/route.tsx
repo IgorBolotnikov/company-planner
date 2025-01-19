@@ -1,5 +1,4 @@
 import { PlusIcon } from "lucide-react";
-import { Outlet, useLoaderData } from "react-router";
 import { Button } from "~/components/ui/button";
 import {
   Table,
@@ -9,12 +8,13 @@ import {
   TableHeader,
   TableRow,
 } from "~/components/ui/table";
+import { type Route } from ".react-router/types/app/routes/people/+types/route";
 
-import { loader } from "./loader";
 export { loader } from "./loader";
+export { action } from "./action";
 
-export default function People() {
-  const { people } = useLoaderData<typeof loader>();
+export default function People({ loaderData }: Route.ComponentProps) {
+  const { people } = loaderData;
 
   return (
     <div className="flex flex-col gap-4">
@@ -47,7 +47,6 @@ export default function People() {
           ))}
         </TableBody>
       </Table>
-      <Outlet />
     </div>
   );
 }

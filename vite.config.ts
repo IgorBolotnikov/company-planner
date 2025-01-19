@@ -14,7 +14,8 @@ export default defineConfig({
   plugins: [reactRouter(), tsconfigPaths()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@/prisma": path.resolve(__dirname, "./prisma"),
+      "@": path.resolve(__dirname, "./app"),
     },
   },
 });

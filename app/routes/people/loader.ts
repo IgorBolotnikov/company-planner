@@ -1,11 +1,9 @@
 import { redirect } from "react-router";
-import { authGuard } from "~/lib/auth";
 import { findCurrentCompanyId } from "~/lib/auth";
-import type { Route } from ".react-router/types/app/routes/people/+types";
-import { prisma } from "../../../prisma/client";
+import { prisma } from "@/prisma/client";
+import { type Route } from ".react-router/types/app/routes/people/+types/route";
 
 export async function loader({ request }: Route.LoaderArgs) {
-  await authGuard(request);
   const companyId = await findCurrentCompanyId(request);
 
   if (!companyId) {

@@ -6,7 +6,7 @@ import {
   LogOutIcon,
   UsersIcon,
 } from "lucide-react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 import {
   Sidebar,
   SidebarContent,
@@ -78,10 +78,10 @@ export function AppSidebar({
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton asChild>
-                  <Link to={item.url}>
+                  <NavLink to={item.url}>
                     <item.icon />
                     <span>{item.title}</span>
-                  </Link>
+                  </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             ))}

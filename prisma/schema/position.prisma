@@ -1,13 +1,14 @@
 model Position {
-  id   String @id @default(uuid())
-  name String @db.VarChar(50)
+  id        String @id @default(uuid())
+  companyId String
 
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  deletedAt    DateTime?
-  externalRate Decimal?  @default("0")
+  name         String  @db.VarChar(50)
+  externalRate Decimal @default("0")
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
 
   employees Employee[]
-  company   Company?   @relation(fields: [companyId], references: [id], onDelete: Cascade)
-  companyId String?
+  company   Company    @relation(fields: [companyId], references: [id], onDelete: Cascade)
 }

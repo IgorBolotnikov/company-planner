@@ -11,8 +11,9 @@ model Employee {
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
-  company  Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
-  position Position? @relation(fields: [positionId], references: [id])
+  company            Company                     @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  position           Position?                   @relation(fields: [positionId], references: [id])
+  projectAssignments EmployeeProjectAssignment[]
 
   @@index([companyId])
   @@index([positionId])

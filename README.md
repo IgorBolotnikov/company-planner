@@ -5,11 +5,6 @@ Switch to correct node version
 nvm use
 ```
 
-Install dependencies
-```bash
-npm install
-```
-
 Run the setup script
 ```barn
 npm run setup

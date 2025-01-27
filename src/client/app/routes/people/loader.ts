@@ -21,7 +21,7 @@ export async function loader({ request }: Route.LoaderArgs) {
       position: {
         select: {
           name: true,
-        }
+        },
       },
     },
   });

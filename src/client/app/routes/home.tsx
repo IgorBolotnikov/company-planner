@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, redirect } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,10 +5,13 @@ import { getAuthUser } from "@/client/lib/auth";
 import { checkIfUserExists, createUserAndCompany } from "~/routes/auth";
 import type { Route } from "./+types/home";
 
-export function meta({}: Route.MetaArgs) {
+export function meta() {
   return [
     { title: "Company Planner" },
-    { name: "description", content: "An easy way to plan your teams in a company!" },
+    {
+      name: "description",
+      content: "An easy way to plan your teams in a company!",
+    },
   ];
 }
 

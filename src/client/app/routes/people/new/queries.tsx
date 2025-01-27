@@ -1,9 +1,9 @@
 import { prisma } from "@/server/adapters/db";
 
 export async function createPerson(args: {
-  firstName: string,
-  lastName: string,
-  companyId: string,
+  firstName: string;
+  lastName: string;
+  companyId: string;
 }) {
   return prisma.employee.create({
     data: {
@@ -13,7 +13,7 @@ export async function createPerson(args: {
         connect: {
           id: args.companyId,
         },
-      }
+      },
     },
   });
 }

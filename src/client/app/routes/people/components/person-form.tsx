@@ -1,9 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod";
-import {
-  Link,
-  useFetcher,
-  useNavigate,
-} from "react-router";
+import { useFetcher, useNavigate } from "react-router";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,9 +31,7 @@ interface PersonFormProps extends React.PropsWithChildren {
   initialValues?: PersonFormData;
 }
 
-export default function PersonForm({
-  initialValues,
-}: PersonFormProps) {
+export default function PersonForm({ initialValues }: PersonFormProps) {
   const fetcher = useFetcher();
   const navigate = useNavigate();
   const form = useRemixForm<PersonFormData>({
@@ -52,13 +46,9 @@ export default function PersonForm({
     resolver: personFormResolver,
   });
 
-  const headerText = initialValues
-    ? "Edit Person"
-    : "New Person";
+  const headerText = initialValues ? "Edit Person" : "New Person";
 
-  const buttonText = initialValues
-    ? "Update"
-    : "Create";
+  const buttonText = initialValues ? "Update" : "Create";
 
   return (
     <Dialog open onOpenChange={() => navigate(-1)}>
@@ -70,27 +60,19 @@ export default function PersonForm({
           <form onSubmit={form.handleSubmit} method="POST">
             <div className="flex flex-col gap-4">
               <div className="flex flex-col gap-2">
-                <Label htmlFor="firstName">
-                  First Name
-                </Label>
+                <Label htmlFor="firstName">First Name</Label>
                 <Input {...form.register("firstName")} />
               </div>
               <div className="flex flex-col gap-2">
-                <Label htmlFor="lastName">
-                  Last Name
-                </Label>
+                <Label htmlFor="lastName">Last Name</Label>
                 <Input {...form.register("lastName")} />
               </div>
               <div className="flex flex-col gap-2">
-                <Label htmlFor="position">
-                  Position
-                </Label>
+                <Label htmlFor="position">Position</Label>
                 <Input {...form.register("position")} />
               </div>
               <div className="flex flex-col gap-2">
-                <Label htmlFor="position">
-                  Team (optional)
-                </Label>
+                <Label htmlFor="position">Team (optional)</Label>
                 <Input {...form.register("team")} />
               </div>
               <DialogFooter>

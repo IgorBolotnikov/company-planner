@@ -15,7 +15,7 @@ export async function loader({ params }: Route.LoaderArgs) {
       position: {
         select: {
           name: true,
-        }
+        },
       },
     },
   });
@@ -29,7 +29,6 @@ export async function loader({ params }: Route.LoaderArgs) {
       lastName: person.lastName,
       position: person.position?.name ?? "",
       team: "",
-
-    }
-  }
+    },
+  };
 }

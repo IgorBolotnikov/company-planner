@@ -74,9 +74,9 @@ export const useRemixForm = <T extends FieldValues>({
     () =>
       Boolean(
         (navigation.state !== "idle" && navigation.formData !== undefined) ||
-          (fetcher?.state !== "idle" && fetcher?.formData !== undefined),
+          (fetcher?.state !== "idle" && fetcher?.formData !== undefined)
       ),
-    [navigation.state, navigation.formData, fetcher?.state, fetcher?.formData],
+    [navigation.state, navigation.formData, fetcher?.state, fetcher?.formData]
   );
 
   // A state to keep track whether we're actually submitting the form through the network
@@ -97,7 +97,7 @@ export const useRemixForm = <T extends FieldValues>({
         e: any,
         formEncType?: FormEncType,
         formMethod?: FormMethod,
-        formAction?: string,
+        formAction?: string
       ) => {
         setIsSubmittingNetwork(true);
         setIsSubmittedSuccessfully(true);
@@ -117,7 +117,7 @@ export const useRemixForm = <T extends FieldValues>({
           action,
         });
       },
-    [submit, submitConfig, submitData, stringifyAllValues],
+    [submit, submitConfig, submitData, stringifyAllValues]
   );
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -170,18 +170,18 @@ export const useRemixForm = <T extends FieldValues>({
         return methods.formState.errors;
       },
     }),
-    [methods.formState, isSubmittedSuccessfully, isSubmittingNetwork],
+    [methods.formState, isSubmittedSuccessfully, isSubmittingNetwork]
   );
   const reset = useMemo(
     () =>
       (
         values?: T | DefaultValues<T> | undefined,
-        options?: KeepStateOptions,
+        options?: KeepStateOptions
       ) => {
         setIsSubmittedSuccessfully(false);
         methods.reset(values, options);
       },
-    [methods.reset],
+    [methods.reset]
   );
 
   const register = useMemo(
@@ -190,7 +190,7 @@ export const useRemixForm = <T extends FieldValues>({
         name: Path<T>,
         options?: RegisterOptions<T> & {
           disableProgressiveEnhancement?: boolean;
-        },
+        }
       ) => {
         const defaultValue =
           get(data?.defaultValues, name) ??
@@ -205,7 +205,7 @@ export const useRemixForm = <T extends FieldValues>({
           }),
         };
       },
-    [methods.register, data?.defaultValues, methods.formState.defaultValues],
+    [methods.register, data?.defaultValues, methods.formState.defaultValues]
   );
 
   const handleSubmit = useMemo(
@@ -214,7 +214,7 @@ export const useRemixForm = <T extends FieldValues>({
       const method = e?.currentTarget?.method as FormMethod | undefined;
       const action = e?.currentTarget?.action.replace(
         `${window.location.origin}${basename === "/" ? "" : basename}`,
-        "",
+        ""
       );
 
       const onValidHandler = submitHandlers?.onValid ?? onSubmit;
@@ -222,10 +222,10 @@ export const useRemixForm = <T extends FieldValues>({
 
       return methods.handleSubmit(
         (data, e) => onValidHandler(data, e, encType, method, action),
-        onInvalidHandler,
+        onInvalidHandler
       )(e);
     },
-    [methods.handleSubmit, submitHandlers, onSubmit, onInvalid],
+    [methods.handleSubmit, submitHandlers, onSubmit, onInvalid]
   );
 
   const hookReturn = useMemo(
@@ -236,7 +236,7 @@ export const useRemixForm = <T extends FieldValues>({
       register,
       formState,
     }),
-    [methods, handleSubmit, reset, register, formState],
+    [methods, handleSubmit, reset, register, formState]
   );
 
   return hookReturn;

@@ -32,10 +32,8 @@ export function CreateCompanyForm() {
     <div className="flex flex-col gap-6">
       <Card>
         <CardHeader className="text-center">
-          <CardTitle className="text-xl">You're almost done!</CardTitle>
-          <CardDescription>
-            Give a name to your company.
-          </CardDescription>
+          <CardTitle className="text-xl">You&apos;re almost done!</CardTitle>
+          <CardDescription>Give a name to your company.</CardDescription>
         </CardHeader>
         <CardContent>
           <RemixFormProvider {...form}>

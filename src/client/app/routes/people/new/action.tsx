@@ -1,7 +1,6 @@
 import { redirect } from "react-router";
 import { findCurrentCompanyId } from "@/client/lib/auth";
 import { getValidatedFormData } from "@/client/lib/remix-hook-form/utilities";
-import { updatePerson } from "~/routes/people/edit/queries";
 import {
   type PersonFormData,
   personFormResolver,

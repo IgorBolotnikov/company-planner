@@ -1,8 +1,6 @@
 import { PencilIcon, PlusIcon, TrashIcon } from "lucide-react";
 import { Form, Link, Outlet } from "react-router";
-import {
-  ConfirmationDialog,
-} from "@/components/confirmation-dialog";
+import { ConfirmationDialog } from "@/components/confirmation-dialog";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -58,15 +56,21 @@ export default function People({ loaderData }: Route.ComponentProps) {
                 <ConfirmationDialog
                   description={`Are you sure you want to delete ${person.firstName} ${person.lastName}? This action cannot be undone.`}
                   trigger={
-                    <Button variant="link" type="button" className="text-destructive">
+                    <Button
+                      variant="link"
+                      type="button"
+                      className="text-destructive"
+                    >
                       <TrashIcon /> Delete
                     </Button>
                   }
                   confirm={
-                    <Form className="" action={`/people/${person.id}/delete`} method="POST">
-                      <Button type="submit">
-                        Delete
-                      </Button>
+                    <Form
+                      className=""
+                      action={`/people/${person.id}/delete`}
+                      method="POST"
+                    >
+                      <Button type="submit">Delete</Button>
                     </Form>
                   }
                 />

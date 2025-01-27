@@ -28,10 +28,7 @@ interface LoginFormProps {
   initialValues?: z.infer<typeof loginFormSchema>;
 }
 
-export function LoginForm({
-  className,
-  initialValues,
-}: LoginFormProps) {
+export function LoginForm({ className, initialValues }: LoginFormProps) {
   const fetcher = useFetcher();
   const form = useRemixForm<FormData>({
     mode: "onSubmit",
@@ -45,9 +42,7 @@ export function LoginForm({
       <Card>
         <CardHeader className="text-center">
           <CardTitle className="text-xl">Welcome back</CardTitle>
-          <CardDescription>
-            Login with your email and password
-          </CardDescription>
+          <CardDescription>Login with your email and password</CardDescription>
         </CardHeader>
         <CardContent>
           <RemixFormProvider {...form}>
@@ -67,7 +62,7 @@ export function LoginForm({
                   <div className="flex items-center">
                     <Label htmlFor="password">Password</Label>
                     <a
-                      href="#"
+                      href="/auth/forgot-password"
                       className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                     >
                       Forgot your password?
@@ -90,4 +85,3 @@ export function LoginForm({
     </div>
   );
 }
-

@@ -16,7 +16,7 @@ const tryParseJSON = (jsonString: string) => {
  */
 export const generateFormData = (
   formData: FormData | URLSearchParams,
-  preserveStringified = false,
+  preserveStringified = false
 ) => {
   // Initialize an empty output object.
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -77,7 +77,7 @@ export const generateFormData = (
 
 export const getFormDataFromSearchParams = <T extends FieldValues>(
   request: Pick<Request, "url">,
-  preserveStringified = false,
+  preserveStringified = false
 ): T => {
   const searchParams = new URL(request.url).searchParams;
 
@@ -107,7 +107,7 @@ type ReturnData<T extends FieldValues> =
 export const getValidatedFormData = async <T extends FieldValues>(
   request: Request | FormData,
   resolver: Resolver<T>,
-  preserveStringified = false,
+  preserveStringified = false
 ): Promise<ReturnData<T>> => {
   const receivedValues =
     "url" in request && isGet(request)
@@ -128,17 +128,17 @@ export const getValidatedFormData = async <T extends FieldValues>(
 export const validateFormData = async <T extends FieldValues>(
   // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   data: any,
-  resolver: Resolver<T>,
+  resolver: Resolver<T>
 ) => {
   const dataToValidate =
     data instanceof FormData ? Object.fromEntries(data) : data;
   const { errors, values } = await resolver(
     dataToValidate,
     {},
-    { shouldUseNativeValidation: false, fields: {} },
+    { shouldUseNativeValidation: false, fields: {} }
   );
 
-  if (Object.keys(errors).length > 0) {
+  if (0 < Object.keys(errors).length) {
     return { errors: errors as FieldErrors<T>, data: undefined };
   }
 
@@ -153,7 +153,7 @@ export const validateFormData = async <T extends FieldValues>(
 */
 export const createFormData = <T extends FieldValues>(
   data: T,
-  stringifyAll = true,
+  stringifyAll = true
 ): FormData => {
   const formData = new FormData();
   if (!data) {
@@ -173,7 +173,7 @@ export const createFormData = <T extends FieldValues>(
     }
     if (
       Array.isArray(value) &&
-      value.length > 0 &&
+      0 < value.length &&
       (value[0] instanceof File || value[0] instanceof Blob)
     ) {
       for (let i = 0; i < value.length; i++) {
@@ -216,7 +216,7 @@ Or parses the specified FormData to retrieve the data
 // biome-ignore lint/complexity/noUselessTypeConstraint: <explanation>
 export const parseFormData = async <T extends unknown>(
   request: Request | FormData,
-  preserveStringified = false,
+  preserveStringified = false
 ): Promise<T> => {
   const formData =
     request instanceof Request ? await request.formData() : request;

@@ -6,16 +6,17 @@ import {
   type CreateCompanyFormData,
   createCompanyResolver,
 } from "~/routes/auth/company/components/create-company-form";
-import type {
-  Route
-} from "../../../../.react-router/types/src/client/app/routes/auth/company/+types/route";
+import type { Route } from "../../../../.react-router/types/src/client/app/routes/auth/company/+types/route";
 
 export async function action({ request }: Route.ActionArgs) {
   const {
     errors,
     data,
     receivedValues: defaultValues,
-  } = await getValidatedFormData<CreateCompanyFormData>(request, createCompanyResolver);
+  } = await getValidatedFormData<CreateCompanyFormData>(
+    request,
+    createCompanyResolver
+  );
 
   if (errors) {
     return { errors, defaultValues };

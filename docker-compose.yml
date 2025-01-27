@@ -1,9 +1,10 @@
 services:
   postgres:
-    image: postgres:14.15-alpine
+    image: postgres:17-alpine
     restart: no
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      - POSTGRES_USER=${DATABASE_USERNAME}
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+    env_file: .env
     ports:
-      - "5555:5432"
+      - 5454:5432

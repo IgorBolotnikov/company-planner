@@ -1,3 +1,6 @@
+> [!WARNING]
+> This repository was moved [here](https://codeberg.org/igorbolotnikov/company-planner)
+
 # Welcome to React Router!
 
 A modern, production-ready template for building full-stack React applications using React Router.
